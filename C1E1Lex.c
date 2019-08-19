@@ -12,7 +12,7 @@ int iskeyword(char buffer[]) {
 							"if","int","long", "print", "register","return","short","signed",
 							"sizeof","static","struct","switch","typedef","union",
 							"unsigned","void","volatile","while"};
-	for ( i = 0; i < 32; i ++ ) {
+	for ( i = 0; i < 33; i ++ ) {
 		if ( strcmp( keywords[i], buffer ) == 0 ) {
 			flag = 1;
 			break;
@@ -62,9 +62,10 @@ void main(int argc, char *argv[]) {
 				printf("%s is a keyword\n", buffer);
 			else if ( isoperator(buffer) && isnew(buffer) )
 				printf("%s is an operator\n", buffer);
-			else if ( isnew(buffer) )
+			else if ( buffer[0] != '\0' && isnew(buffer) )
 				printf("%s is an identifier\n", buffer);
 			bufflength = 0;
+			buffer[bufflength] = '\0';
 		} else buffer[bufflength++] = ch;
 	}
 }
